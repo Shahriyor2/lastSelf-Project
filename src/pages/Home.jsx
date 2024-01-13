@@ -1,64 +1,69 @@
-import Card from "../Components/Card";
+import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { Skeleton } from "../components/pizzaBlock/Skeleton";
+import axios from "axios";
+import { Categories } from "../components/Categories";
+import { PizzaBlock } from "../components/pizzaBlock/PizzaBlock";
+import { Pagination } from "../components/pagination";
+import { setIsLoading } from "../redux/reducers/filterSlice";
+import { Header } from "../components/Header";
+import { Sort } from "../components/Sort";
 
-function Home({
-  items,
-  searchValue,
-  setSearchValue,
-  onChangeSearchInput,
-  onAddToFavorite,
-  onAddToCart,
-  isAdded,
-  onDeleteFromCart,
-  cartItems,
-  isLoading,
-}) {
-  const renderItems = () => {
-    const filterItems = items.filter((item) =>
-      item.tittle.toLowerCase().includes(searchValue.toLowerCase())
-    );
+export const Home = () => {
+  const [items, setItems] = useState([]);
 
-    return (isLoading ? [...Array(8)] : filterItems).map((item, index) => (
-      <Card
-        isAdded={isAdded}
-        cartItems={cartItems}
-        key={index}
-        {...item}
-        onDeleteFromCart={onDeleteFromCart}
-        onFavorite={onAddToFavorite}
-        onAddToCart={onAddToCart}
-        loading={isLoading}
-      />
-    ));
-  };
+  const { categoryId, sort, loading, countPage, searchValue } = useSelector(
+    (state) => state.filterSlice
+  );
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const category = categoryId > 0 ? `category=${categoryId}` : "";
+    const sortBy = sort.sortProperty.replace("-", "");
+    const sortOrder = sort.sortProperty.includes("-") ? "asc" : "desc";
+    const search = searchValue ? `search=${searchValue}` : "";
+
+    dispatch(setIsLoading(true));
+    axios
+      .get(
+        `https://6509820cf6553137159b94c2.mockapi.io/items?page=${countPage}&limit=4&${category}&sortBy=${sortBy}&order=${sortOrder}&${search}`
+      )
+      .then((res) => {
+        setItems(res.data);
+        dispatch(setIsLoading(false));
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+        dispatch(setIsLoading(false));
+      });
+  }, [categoryId, sort.sortProperty, countPage, searchValue]);
 
   return (
-    <div className="content p-40">
-      <div className="d-flex align-center justify-between mb-40">
-        <h1>
-          {searchValue ? `Поиск по запросу: ${searchValue}` : "Все кроссовки"}
-        </h1>
-        <div className="search-block">
-          <img src="/img/search.svg" alt="Search" />
-          {searchValue && (
-            <img
-              onClick={() => setSearchValue("")}
-              className="clear cu-p"
-              src="/img/remove.svg"
-              alt="Clear"
-            />
-          )}
-          <input
-            onChange={onChangeSearchInput}
-            value={searchValue}
-            placeholder="Поиск"
-          ></input>
+      <div className="content">
+        <div className="container">
+          <div className="content__top">
+            <Categories />
+            <Sort />
+          </div>
+          <h2 className="content__title">Все пиццы</h2>
+          <div className="content__items">
+            {loading
+              ? [...new Array(10)].map((_, i) => {
+                  return <Skeleton key={i} />;
+                })
+              : items
+                  .filter((object) =>
+                    object.title
+                      .toLowerCase()
+                      .includes(searchValue.toLowerCase())
+                  )
+                  .map((object, i) => {
+                    return <PizzaBlock key={i} {...object} />;
+                  })}
+          </div>
+          <Pagination />
         </div>
       </div>
-
-      {/* карты */}
-      <div className="d-flex card_block">{renderItems()}</div>
-    </div>
   );
-}
-
-export default Home;
+};
