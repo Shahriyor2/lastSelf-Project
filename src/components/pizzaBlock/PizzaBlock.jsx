@@ -7,15 +7,15 @@ export const PizzaBlock = ({ id, title, sizes, types, price, imageUrl }) => {
   const [sizeIndex, setSizeIndex] = useState(0);
   const [typesIndex, setTypesIndex] = useState(0);
   const type = ["тонкое", "традиционное"];
-  const sizeType = ["26", "30", "40"];
+  // const sizeType = ["26", "30", "40"];
   const dispatch = useDispatch();
 
   const onAddToCart = () => {
     const listItemValues = {
       id,
       title,
-      activeSize: sizes[sizeIndex],
-      typesIndex: types[typesIndex],
+      typesIndex: type[typesIndex],
+      size: sizes[sizeIndex],
       imageUrl,
       price,
     };

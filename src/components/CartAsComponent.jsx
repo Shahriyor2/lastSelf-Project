@@ -13,6 +13,7 @@ export const CartAsComponent = ({
   typesIndex,
   imageUrl,
   price,
+  size,
   count,
 }) => {
   const dispatch = useDispatch();
@@ -37,7 +38,9 @@ export const CartAsComponent = ({
       </div>
       <div className="cart__item-info">
         <h3>{title}</h3>
-        <p>{typesIndex} тесто, 26 см.</p>
+        <p>
+          {typesIndex} тесто, {size} см.
+        </p>
       </div>
       <div className="cart__item-count">
         <div
