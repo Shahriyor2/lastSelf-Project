@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { CartAsComponent } from "../CartAsComponent";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,6 +13,12 @@ export const Cart = () => {
   const dispatch = useDispatch();
   const { items, totalPrice } = useSelector((state) => state.cartSlice);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isPaymentSuccessfull, setIsPaymentSuccessfull] = useState(false);
+  const [prevSuccess, setPrevSuccsess] = useState(false);
+  const [isNumber, setIsNumber] = useState("");
+  const [isFirstName, setIsFirstName] = useState("");
+  const [isLastName, setIsLastName] = useState("");
+  const [isEmail, setIsEmail] = useState("");
 
   const onClickRemoveAllItems = () => {
     setIsModalOpen(true);
@@ -25,6 +31,31 @@ export const Cart = () => {
 
   const handleCancelClear = () => {
     setIsModalOpen(false);
+  };
+
+  // отправка
+  const handlePayment = () => {
+    setIsPaymentSuccessfull(false);
+    setPrevSuccsess(true);
+  };
+
+  const toClose = () => {
+    setIsPaymentSuccessfull(false);
+  };
+
+  const closeModal = () => {
+    setIsPaymentSuccessfull(false);
+    dispatch(clearItems());
+  };
+
+  // изменение после отправки
+  const handleSent = () => {
+    setIsPaymentSuccessfull(true);
+    setPrevSuccsess(false);
+    setTimeout(() => {
+      dispatch(clearItems());
+      setIsPaymentSuccessfull(false);
+    }, 10000);
   };
 
   return (
@@ -115,6 +146,7 @@ export const Cart = () => {
               style={{
                 overlay: {
                   backgroundColor: "rgba(0, 0, 0, 0.5)",
+                  transition: "background-color 0.15s ease-in-out",
                 },
                 content: {
                   border: "none",
@@ -166,38 +198,161 @@ export const Cart = () => {
             <div className="cart__bottom-details">
               <span>
                 Всего пицц:
-                <b style={{marginLeft:"7px"}}>{items.reduce((sum, item) => sum + item.count, 0)} шт.</b>
+                <b style={{ marginLeft: "7px" }}>
+                  {items.reduce((sum, item) => sum + item.count, 0)} шт.
+                </b>
               </span>
               <span>
                 Сумма заказа: <b>{totalPrice} ₽</b>
               </span>
             </div>
             <div className="cart__bottom-buttons">
-              <Link
-                to="/"
-                className="button button--outline button--add go-back-btn"
-              >
-                <svg
-                  width="8"
-                  height="14"
-                  viewBox="0 0 8 14"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M7 13L1 6.93015L6.86175 1"
-                    stroke="#D3D3D3"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
+              <button className="button button--outline button--add go-back-btn">
+                <Link to="/">
+                  <svg
+                    width="8"
+                    height="14"
+                    viewBox="0 0 8 14"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M7 13L1 6.93015L6.86175 1"
+                      stroke="#D3D3D3"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
 
-                <span>Вернуться назад</span>
-              </Link>
-              <div className="button pay-btn">
+                  <span>Вернуться назад</span>
+                </Link>
+              </button>
+              <button onClick={handlePayment} className="button pay-btn">
                 <span>Оплатить сейчас</span>
-              </div>
+              </button>
+              {prevSuccess && (
+                <Modal
+                  isOpen={prevSuccess}
+                  style={{
+                    overlay: {
+                      backgroundColor: "rgba(0, 0, 0, 0.5)",
+                      transition: "background-color 0.15s ease-in-out",
+                    },
+                    content: {
+                      border: "none",
+                      borderRadius: "8px",
+                      boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+                      maxWidth: "470px",
+                      margin: "auto",
+                      padding: "20px",
+                      background: "#fff",
+                      height: "355px",
+                    },
+                  }}
+                >
+                  <div className="modal-content">
+                    <span>Заполните анкету </span>
+                    <div
+                      style={{
+                        marginTop: "30px",
+                        display: "flex",
+                        flexDirection: "column",
+                      }}
+                    >
+                      <input
+                        type="text"
+                        name="phone"
+                        placeholder="Телефон"
+                        value={isNumber}
+                        onChange={(e) => setIsNumber(e.target.value)}
+                      />
+                      <input
+                        type="text"
+                        name="firstName"
+                        placeholder="Имя"
+                        value={isFirstName}
+                        onChange={(e) => setIsFirstName(e.target.value)}
+                      />
+                      <input
+                        type="text"
+                        name="lastName"
+                        placeholder="Фамилия"
+                        value={isLastName}
+                        onChange={(e) => setIsLastName(e.target.value)}
+                      />
+                      <input
+                        type="text"
+                        name="email"
+                        placeholder="Email"
+                        value={isEmail}
+                        onChange={(e) => setIsEmail(e.target.value)}
+                      />
+
+                      <button
+                        onClick={handleSent}
+                        disabled={
+                          !isNumber || !isFirstName || !isLastName || !isEmail
+                        }
+                        className="modal-button confirm"
+                        // onClick={handleSubmit}
+                      >
+                        <span className="confirm__span"> Отправить</span>
+                      </button>
+                    </div>
+                  </div>
+                </Modal>
+              )}
+              {isPaymentSuccessfull && (
+                <Modal
+                  isOpen={toClose}
+                  // onRequestClose={() => setTimeout(closeModal, 10000)}
+                  style={{
+                    overlay: {
+                      backgroundColor: "rgba(0, 0, 0, 0.5)",
+                    },
+                    content: {
+                      border: "none",
+                      borderRadius: "8px",
+                      boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+                      maxWidth: "300px",
+                      margin: "auto",
+                      padding: "20px",
+                      background: "#fff",
+                      textAlign: "center",
+                      height: "345px",
+                    },
+                  }}
+                >
+                  <div>
+                    <span
+                      role="img"
+                      aria-label="happy-emoji"
+                      style={{ fontSize: "60px", color: "#4CAF50" }}
+                    >
+                      ✔️
+                    </span>
+                    <p
+                      style={{
+                        fontSize: "22px",
+                        marginTop: "10px",
+                        fontWeight: "700",
+                      }}
+                    >
+                      Ваш заказ принят!
+                    </p>
+                    <br />
+                    <span>С Вами скоро свяжется оператор ;) </span>
+                    <button
+                      style={{ marginTop: "15px" }}
+                      className="modal-button confirm"
+                      onClick={closeModal}
+                    >
+                      Закрыть
+                    </button>
+                  </div>
+                </Modal>
+              )}
             </div>
           </div>
         </div>

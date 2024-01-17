@@ -10,28 +10,28 @@ export const CartAsComponent = ({
   id,
   title,
   typeIndex,
-  imageUrl,
+  image,
   price,
   size,
   count,
 }) => {
   const dispatch = useDispatch();
   const onClickPlus = () => {
-    dispatch(addItem({ id }));
+    dispatch(addItem({ id, typeIndex }));
   };
 
   const onClickMinus = () => {
-    dispatch(minusItem({ id }));
+    dispatch(minusItem({ id, typeIndex }));
   };
 
   const onClickRemove = () => {
-    dispatch(removeItemPizza({ id }));
+    dispatch(removeItemPizza({ id, typeIndex }));
   };
 
   return (
     <div className="cart__item">
       <div className="cart__item-img">
-        <img className="pizza-block__image" src={imageUrl} alt="Pizza" />
+        <img className="pizza-block__image" src={image} alt="Pizza" />
       </div>
       <div className="cart__item-info">
         <h3>{title}</h3>

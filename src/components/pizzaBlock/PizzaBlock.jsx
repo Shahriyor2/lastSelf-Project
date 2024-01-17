@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { addItem } from "../../redux/reducers/cartSlice";
 import { useSelector } from "react-redux";
@@ -21,14 +21,16 @@ export const PizzaBlock = ({ id, title, sizes, types, price, images }) => {
       title,
       typeIndex: type[typesIndex],
       size: sizes[sizeIndex],
-      // imageUrl,
+      image: images[sizeImage],
       price,
     };
     dispatch(addItem(listItemValues));
   };
 
   const { items } = useSelector((state) => state.cartSlice);
-  const itemCount = items.find((obj) => obj.id === id);
+  const itemCount = items.find(
+    (obj) => obj.id === id && obj.typeIndex === type[typesIndex]
+  );
   const count = itemCount ? itemCount.count : "";
 
   return (
@@ -38,7 +40,10 @@ export const PizzaBlock = ({ id, title, sizes, types, price, images }) => {
           className="pizza-block__image"
           src={images[sizeImage]}
           alt="Pizza"
-          style={{ width: `${(sizes[sizeIndex] + 5) * 5}px` }}
+          style={{
+            width: `${(sizes[sizeIndex] + 5) * 5}px`,
+            transition: "width 0.15s ease-in-out",
+          }}
         />
         <h4 className="pizza-block__title">{title}</h4>
         <div className="pizza-block__selector">
