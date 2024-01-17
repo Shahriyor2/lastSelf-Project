@@ -1,103 +1,142 @@
 [
-    {
-      "id": 0,
-      "imageUrl": "https://dodopizza.azureedge.net/static/Img/Products/f035c7f46c0844069722f2bb3ee9f113_584x584.jpeg",
-      "title": "Пепперони Фреш с перцем",
-      "types": [0, 1],
-      "sizes": [26, 30, 40],
-      "price": 803,
-      "category": 0,
-      "rating": 4
+  {
+    "id": 0,
+    "images": {
+      "26": "https://dodopizza-a.akamaihd.net/static/Img/Products/11ee897f92dc3ad4a8d79ec6fa772d1b_138x138.jpeg",
+      "30": "https://dodopizza-a.akamaihd.net/static/Img/Products/11ee897f93ffafbbbd994a98509d748d_138x138.jpeg",
+      "40": "https://dodopizza-a.akamaihd.net/static/Img/Products/11ee897f974d5f4f8bb147c28555ddb7_138x138.jpeg"
     },
+    "title": "Пепперони Фреш с перцем",
+    "types": [0, 1],
+    "sizes": [26, 30, 40],
+    "price": 803,
+    "category": 0,
+    "rating": 4
+  },
 
-    {
-      "id": 1,
-      "imageUrl": "https://dodopizza.azureedge.net/static/Img/Products/Pizza/ru-RU/2ffc31bb-132c-4c99-b894-53f7107a1441.jpg",
-      "title": "Сырная",
-      "types": [0],
-      "sizes": [26, 40],
-      "price": 245,
-      "category": 1,
-      "rating": 6
+  {
+    "id": 1,
+    "images": {
+      "26": "https://dodopizza-a.akamaihd.net/static/Img/Products/11ee8985173e900ebffe946f8f2c03cb_138x138.jpeg",
+      "40": "https://dodopizza-a.akamaihd.net/static/Img/Products/11ee89851bb6516183f77b2b98fac084_138x138.jpeg"
     },
-    {
-      "id": 2,
-      "imageUrl": "https://dodopizza.azureedge.net/static/Img/Products/Pizza/ru-RU/6652fec1-04df-49d8-8744-232f1032c44b.jpg",
-      "title": "Цыпленок барбекю",
-      "types": [0],
-      "sizes": [26, 40],
-      "price": 295,
-      "category": 1,
-      "rating": 4
+    "title": "Сырная",
+    "types": [0],
+    "sizes": [26, 40],
+    "price": 245,
+    "category": 1,
+    "rating": 6
+  },
+  {
+    "id": 2,
+    "images": {
+      "26": "https://dodopizza-a.akamaihd.net/static/Img/Products/11ee8985c438aa2d993029b9847d5919_138x138.jpeg",
+      "30": "https://dodopizza-a.akamaihd.net/static/Img/Products/11ee8985c5c85cad8bfcdef02c455b1a_138x138.jpeg",
+      "40": "https://dodopizza-a.akamaihd.net/static/Img/Products/11ee898611d01d08a5ea4707d04055aa_138x138.jpeg"
     },
-    {
-      "id": 3,
-      "imageUrl": "https://dodopizza.azureedge.net/static/Img/Products/Pizza/ru-RU/af553bf5-3887-4501-b88e-8f0f55229429.jpg",
-      "title": "Кисло-сладкий цыпленок",
-      "types": [1],
-      "sizes": [26, 30, 40],
-      "price": 275,
-      "category": 2,
-      "rating": 2
+    "title": "Цыпленок барбекю",
+    "types": [0],
+    "sizes": [26, 40],
+    "price": 295,
+    "category": 1,
+    "rating": 4
+  },
+  {
+    "id": 3,
+    "images": {
+      "26": "https://dodopizza-a.akamaihd.net/static/Img/Products/11ee8980827b721fa37da5b11e1bf46b_138x138.jpeg",
+      "30": "https://dodopizza-a.akamaihd.net/static/Img/Products/11ee898086263f1291f5884ef7f307fa_138x138.jpeg",
+      "40": "https://dodopizza-a.akamaihd.net/static/Img/Products/11ee89808942789ba0304e196d674936_138x138.jpeg"
     },
-    {
-      "id": 4,
-      "imageUrl": "https://dodopizza.azureedge.net/static/Img/Products/Pizza/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg",
-      "title": "Чизбургер-пицца",
-      "types": [0, 1],
-      "sizes": [26, 30, 40],
-      "price": 415,
-      "category": 3,
-      "rating": 8
+    "title": "Кисло-сладкий цыпленок",
+    "types": [1],
+    "sizes": [26, 30, 40],
+    "price": 275,
+    "category": 2,
+    "rating": 2
+  },
+  {
+    "id": 4,
+    "images": {
+      "26": "https://dodopizza-a.akamaihd.net/static/Img/Products/18dbb12240b041a191c9dc73c9c1f4ef_138x138.jpeg",
+      "30": "https://dodopizza-a.akamaihd.net/static/Img/Products/18dbb12240b041a191c9dc73c9c1f4ef_138x138.jpeg",
+      "40": "https://dodopizza-a.akamaihd.net/static/Img/Products/85e426e4edc74bca846add17758f2aa2_138x138.jpeg"
     },
-    {
-      "id": 5,
-      "imageUrl": "https://dodopizza.azureedge.net/static/Img/Products/Pizza/ru-RU/1e1a6e80-b3ba-4a44-b6b9-beae5b1fbf27.jpg",
-      "title": "Крэйзи пепперони",
-      "types": [0],
-      "sizes": [30, 40],
-      "price": 580,
-      "category": 2,
-      "rating": 2
+    "title": "Чизбургер-пицца",
+    "types": [0, 1],
+    "sizes": [26, 30, 40],
+    "price": 415,
+    "category": 3,
+    "rating": 8
+  },
+  {
+    "id": 5,
+    "images": {
+      "26": "https://dodopizza-a.akamaihd.net/static/Img/Products/cd6cf09440d043c3a3fec67d74a196af_138x138.jpeg",
+
+      "40": "https://dodopizza-a.akamaihd.net/static/Img/Products/a7960cbbe29445e4a00989e5a3b20879_138x138.jpeg"
     },
-    {
-      "id": 6,
-      "imageUrl": "https://dodopizza.azureedge.net/static/Img/Products/Pizza/ru-RU/d2e337e9-e07a-4199-9cc1-501cc44cb8f8.jpg",
-      "title": "Пепперони",
-      "types": [0, 1],
-      "sizes": [26, 30, 40],
-      "price": 675,
-      "category": 1,
-      "rating": 9
+    "title": "Крэйзи пепперони",
+    "types": [0],
+    "sizes": [30, 40],
+    "price": 580,
+    "category": 2,
+    "rating": 2
+  },
+  {
+    "id": 6,
+    "images": {
+      "26": "https://dodopizza-a.akamaihd.net/static/Img/Products/78ead088b2e643569fcf24f7dacf019e_138x138.jpeg",
+      "30": "https://dodopizza-a.akamaihd.net/static/Img/Products/fb9cc5b8ff2e47bdbcbdcb5930cddf06_138x138.jpeg",
+      "40": "https://dodopizza-a.akamaihd.net/static/Img/Products/352c04fe9f974a029eba1ff1351a5d6d_138x138.jpeg"
     },
-    {
-      "id": 7,
-      "imageUrl": "https://dodopizza.azureedge.net/static/Img/Products/Pizza/ru-RU/d48003cd-902c-420d-9f28-92d9dc5f73b4.jpg",
-      "title": "Маргарита",
-      "types": [0, 1],
-      "sizes": [26, 30, 40],
-      "price": 450,
-      "category": 4,
-      "rating": 10
+    "title": "Пепперони",
+    "types": [0, 1],
+    "sizes": [26, 30, 40],
+    "price": 675,
+    "category": 1,
+    "rating": 9
+  },
+  {
+    "id": 7,
+    "images": {
+      "26": "https://dodopizza-a.akamaihd.net/static/Img/Products/11ee897efa4fb2bc91d157e9bb7d46f8_138x138.jpeg",
+      "30": "https://dodopizza-a.akamaihd.net/static/Img/Products/11ee897efbef45e986c312380e034c1d_138x138.jpeg",
+      "40": "https://dodopizza-a.akamaihd.net/static/Img/Products/11ee897f007a1eaa972792361b541b7c_138x138.jpeg"
     },
-    {
-      "id": 8,
-      "imageUrl": "https://dodopizza.azureedge.net/static/Img/Products/Pizza/ru-RU/ec29465e-606b-4a04-a03e-da3940d37e0e.jpg",
-      "title": "Четыре сезона",
-      "types": [0, 1],
-      "sizes": [26, 30, 40],
-      "price": 395,
-      "category": 5,
-      "rating": 10
+    "title": "Маргарита",
+    "types": [0, 1],
+    "sizes": [26, 30, 40],
+    "price": 450,
+    "category": 4,
+    "rating": 10
+  },
+  {
+    "id": 8,
+    "images": {
+      "26": "https://dodopizza-a.akamaihd.net/static/Img/Products/d51fa179760041f0831e63fa21c39402_138x138.jpeg",
+      "30": "https://dodopizza-a.akamaihd.net/static/Img/Products/d51fa179760041f0831e63fa21c39402_138x138.jpeg",
+      "40": "https://dodopizza-a.akamaihd.net/static/Img/Products/d51fa179760041f0831e63fa21c39402_138x138.jpeg"
     },
-    {
-      "id": 9,
-      "imageUrl": "https://dodopizza.azureedge.net/static/Img/Products/Pizza/ru-RU/30367198-f3bd-44ed-9314-6f717960da07.jpg",
-      "title": "Овощи и грибы 🌱",
-      "types": [0, 1],
-      "sizes": [26, 30, 40],
-      "price": 285,
-      "category": 5,
-      "rating": 7
-    }
-  ]
+    "title": "Четыре сезона",
+    "types": [0, 1],
+    "sizes": [26, 30, 40],
+    "price": 395,
+    "category": 5,
+    "rating": 10
+  },
+  {
+    "id": 9,
+    "images": {
+      "26": "https://dodopizza-a.akamaihd.net/static/Img/Products/2a410e83d3f741d48678cf40c5444afb_138x138.jpeg",
+      "30": "https://dodopizza-a.akamaihd.net/static/Img/Products/d6c9f93ea37649ac923e9586c034a5a0_138x138.jpeg",
+      "40": "https://dodopizza-a.akamaihd.net/static/Img/Products/d575d8ba56264317a9978ef3dd1b8b09_138x138.jpeg"
+    },
+    "title": "Овощи и грибы 🌱",
+    "types": [0, 1],
+    "sizes": [26, 30, 40],
+    "price": 285,
+    "category": 5,
+    "rating": 7
+  }
+]

@@ -9,6 +9,17 @@
     align-items: center;
     justify-content: space-between;
 
+    @media (max-width: 730px) {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      .header__logo {
+        margin-bottom: 7px;
+      }
+    }
+
     @media (max-width: 645px) {
       flex-direction: column;
 

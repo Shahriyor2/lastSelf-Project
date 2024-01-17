@@ -2,16 +2,31 @@ import React from "react";
 import { CartAsComponent } from "../CartAsComponent";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import Modal from "react-modal";
 import { clearItems } from "../../redux/reducers/cartSlice";
+import { useState } from "react";
+import "../../scss/app.scss";
+
+Modal.setAppElement("#root");
 
 export const Cart = () => {
   const dispatch = useDispatch();
   const { items, totalPrice } = useSelector((state) => state.cartSlice);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const onClickRemoveAllItems = () => {
-    if (window.confirm("Вы действительно хотите очистить корщину?")) {
-      dispatch(clearItems());
-    }
+    setIsModalOpen(true);
   };
+
+  const handleConfirmClear = () => {
+    dispatch(clearItems());
+    setIsModalOpen(false);
+  };
+
+  const handleCancelClear = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <div className="content">
       <div className="container container--cart">
@@ -92,6 +107,55 @@ export const Cart = () => {
 
               <span>Очистить корзину</span>
             </div>
+
+            {/* модальное окно */}
+            <Modal
+              isOpen={isModalOpen}
+              onRequestClose={() => setIsModalOpen(false)}
+              style={{
+                overlay: {
+                  backgroundColor: "rgba(0, 0, 0, 0.5)",
+                },
+                content: {
+                  border: "none",
+                  borderRadius: "8px",
+                  boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+                  maxWidth: "470px",
+                  margin: "auto",
+                  padding: "20px",
+                  background: "#fff",
+                  height: "260px",
+                },
+              }}
+            >
+              <div className="modal-content">
+                <p className="modal-text" style={{ fontSize: "20px" }}>
+                  Вы действительно желаете очистить корзину?
+                </p>
+                <span
+                  role="img"
+                  aria-label="sad-emoji"
+                  style={{ fontSize: "90px", lineHeight: "80px" }}
+                >
+                  😢
+                </span>
+                <br />
+                <div style={{ marginTop: "30px" }}>
+                  <button
+                    className="modal-button confirm"
+                    onClick={handleConfirmClear}
+                  >
+                    Да
+                  </button>
+                  <button
+                    className="modal-button cancel"
+                    onClick={handleCancelClear}
+                  >
+                    Отмена
+                  </button>
+                </div>
+              </div>
+            </Modal>
           </div>
           <div className="content__cart-items">
             {items.map((item) => {
@@ -102,7 +166,7 @@ export const Cart = () => {
             <div className="cart__bottom-details">
               <span>
                 Всего пицц:
-                <b>{items.reduce((sum, item) => sum + item.count, 0)} шт.</b>
+                <b style={{marginLeft:"7px"}}>{items.reduce((sum, item) => sum + item.count, 0)} шт.</b>
               </span>
               <span>
                 Сумма заказа: <b>{totalPrice} ₽</b>

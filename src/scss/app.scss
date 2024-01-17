@@ -38,6 +38,9 @@ body {
   }
 
   &__items {
+    // display: flex;
+    // flex-wrap: wrap;
+    // justify-content: space-around;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(1, 1fr);
@@ -52,7 +55,10 @@ body {
     }
 
     @media (max-width: 730px) {
-      grid-template-columns: repeat(1, 1fr);
+      // grid-template-columns: repeat(1, 1fr);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
     }
   }
 
@@ -209,6 +215,26 @@ body {
             display: none;
           }
         }
+
+        &:disabled {
+          opacity: 0.4;
+          border-color: #787878;
+
+          svg {
+            path {
+              fill: #787878;
+            }
+          }
+
+          &:active {
+            transform: none;
+          }
+
+          &:hover {
+            background-color: transparent;
+            cursor: auto;
+          }
+        }
       }
 
       b {
@@ -362,4 +388,47 @@ body {
       font-size: 18px;
     }
   }
+}
+
+/* Cart.css */
+.cart__clear {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #fff;
+}
+
+.modal-content {
+  text-align: center;
+}
+
+.modal-text {
+  margin-bottom: 20px;
+}
+
+.modal-button {
+  cursor: pointer;
+  padding: 10px 20px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.modal-button.confirm {
+  background-color: #f00;
+  color: #fff;
+}
+
+.modal-button.cancel {
+  background-color: #ddd;
+  color: #333;
+}
+
+.modal-button:hover {
+  background-color: #333;
+  color: #fff;
 }

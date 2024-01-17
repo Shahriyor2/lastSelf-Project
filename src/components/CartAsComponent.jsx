@@ -9,8 +9,7 @@ import {
 export const CartAsComponent = ({
   id,
   title,
-  activeSize,
-  typesIndex,
+  typeIndex,
   imageUrl,
   price,
   size,
@@ -26,9 +25,7 @@ export const CartAsComponent = ({
   };
 
   const onClickRemove = () => {
-    if (window.confirm("Вы деёствительно хотите удалить товар из корзины?")) {
-      dispatch(removeItemPizza({ id }));
-    }
+    dispatch(removeItemPizza({ id }));
   };
 
   return (
@@ -39,11 +36,12 @@ export const CartAsComponent = ({
       <div className="cart__item-info">
         <h3>{title}</h3>
         <p>
-          {typesIndex} тесто, {size} см.
+          {typeIndex} тесто, {size} см.
         </p>
       </div>
       <div className="cart__item-count">
-        <div
+        <button
+          disabled={count === 1}
           onClick={() => onClickMinus()}
           className="button button--outline button--circle cart__item-count-minus"
         >
@@ -63,9 +61,9 @@ export const CartAsComponent = ({
               fill="#EB5A1E"
             />
           </svg>
-        </div>
+        </button>
         <b>{count}</b>
-        <div
+        <button
           onClick={() => onClickPlus()}
           className="button button--outline button--circle cart__item-count-plus"
         >
@@ -85,7 +83,7 @@ export const CartAsComponent = ({
               fill="#EB5A1E"
             />
           </svg>
-        </div>
+        </button>
       </div>
       <div className="cart__item-price">
         <b>{price * count} ₽</b>

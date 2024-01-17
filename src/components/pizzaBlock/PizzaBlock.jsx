@@ -3,20 +3,25 @@ import { useDispatch } from "react-redux";
 import { addItem } from "../../redux/reducers/cartSlice";
 import { useSelector } from "react-redux";
 
-export const PizzaBlock = ({ id, title, sizes, types, price, imageUrl }) => {
+export const PizzaBlock = ({ id, title, sizes, types, price, images }) => {
   const [sizeIndex, setSizeIndex] = useState(0);
   const [typesIndex, setTypesIndex] = useState(0);
+  const [sizeImage, setSizeImage] = useState(26);
   const type = ["тонкое", "традиционное"];
-  // const sizeType = ["26", "30", "40"];
   const dispatch = useDispatch();
+
+  const onClickSizeActiveImg = (size, i) => {
+    setSizeIndex(i);
+    setSizeImage(size);
+  };
 
   const onAddToCart = () => {
     const listItemValues = {
       id,
       title,
-      typesIndex: type[typesIndex],
+      typeIndex: type[typesIndex],
       size: sizes[sizeIndex],
-      imageUrl,
+      // imageUrl,
       price,
     };
     dispatch(addItem(listItemValues));
@@ -29,7 +34,12 @@ export const PizzaBlock = ({ id, title, sizes, types, price, imageUrl }) => {
   return (
     <>
       <div className="pizza-block">
-        <img className="pizza-block__image" src={imageUrl} alt="Pizza" />
+        <img
+          className="pizza-block__image"
+          src={images[sizeImage]}
+          alt="Pizza"
+          style={{ width: `${(sizes[sizeIndex] + 5) * 5}px` }}
+        />
         <h4 className="pizza-block__title">{title}</h4>
         <div className="pizza-block__selector">
           <ul>
@@ -47,7 +57,7 @@ export const PizzaBlock = ({ id, title, sizes, types, price, imageUrl }) => {
             {sizes.map((size, i) => (
               <li
                 key={i}
-                onClick={() => setSizeIndex(i)}
+                onClick={() => onClickSizeActiveImg(size, i)}
                 className={sizeIndex === i ? "active" : ""}
               >
                 {size} см.
