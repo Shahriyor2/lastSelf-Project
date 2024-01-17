@@ -178,18 +178,40 @@ body {
         overflow: auto;
 
         ul {
-          width: 296px;
+          width: 380px;
         }
       }
     }
 
-    @media (min-width: 414px) and (max-width: 503px) {
+    @media (max-width: 684px) {
       .categories {
         width: 100%;
         overflow: auto;
 
         ul {
-          width: 196px;
+          width: 380px;
+        }
+      }
+    }
+
+    @media (min-width: 494px) and (max-width: 560px) {
+      .categories {
+        width: 100%;
+        overflow: auto;
+
+        ul {
+          width: 270px;
+        }
+      }
+    }
+
+    @media (min-width: 414px) and (max-width: 493px){
+      .categories {
+        width: 100%;
+        overflow: auto;
+
+        ul {
+          width: 190px;
         }
       }
     }

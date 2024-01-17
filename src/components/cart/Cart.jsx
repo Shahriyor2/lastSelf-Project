@@ -315,7 +315,7 @@ export const Cart = () => {
                       border: "none",
                       borderRadius: "8px",
                       boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
-                      maxWidth: "300px",
+                      maxWidth: "320px",
                       margin: "auto",
                       padding: "20px",
                       background: "#fff",
@@ -334,7 +334,7 @@ export const Cart = () => {
                     </span>
                     <p
                       style={{
-                        fontSize: "22px",
+                        fontSize: "24px",
                         marginTop: "10px",
                         fontWeight: "700",
                       }}
@@ -342,9 +342,9 @@ export const Cart = () => {
                       Ваш заказ принят!
                     </p>
                     <br />
-                    <span>С Вами скоро свяжется оператор ;) </span>
+                    <span style={{width: "20px", fontWeight:"600"}}>С Вами скоро свяжется оператор ;) </span>
                     <button
-                      style={{ marginTop: "15px" }}
+                      style={{ marginTop: "35px" }}
                       className="modal-button confirm"
                       onClick={closeModal}
                     >
