@@ -252,7 +252,7 @@ export const Cart = () => {
                   }}
                 >
                   <div className="modal-content">
-                    <span>Заполните анкету </span>
+                    <span>Заполните персональные данные </span>
                     <div
                       style={{
                         marginTop: "30px",
@@ -342,7 +342,9 @@ export const Cart = () => {
                       Ваш заказ принят!
                     </p>
                     <br />
-                    <span style={{width: "20px", fontWeight:"600"}}>С Вами скоро свяжется оператор ;) </span>
+                    <span style={{ width: "20px", fontWeight: "600" }}>
+                      С Вами скоро свяжется оператор ;){" "}
+                    </span>
                     <button
                       style={{ marginTop: "35px" }}
                       className="modal-button confirm"

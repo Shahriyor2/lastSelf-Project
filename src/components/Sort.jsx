@@ -18,7 +18,7 @@ export const Sort = ({ sortValue, setSortValue }) => {
       sortProperty: "rating",
     },
     {
-      name: "популярности ASC(height)",
+      name: "популярности (возростание)",
       sortProperty: "-rating",
     },
     {
@@ -26,7 +26,7 @@ export const Sort = ({ sortValue, setSortValue }) => {
       sortProperty: "price",
     },
     {
-      name: "цене ASC(height)",
+      name: "цене возростание",
       sortProperty: "-price",
     },
     {
@@ -34,7 +34,7 @@ export const Sort = ({ sortValue, setSortValue }) => {
       sortProperty: "title",
     },
     {
-      name: "алфавиту ASC(height)",
+      name: "алфавиту возростание",
       sortProperty: "-title",
     },
   ];

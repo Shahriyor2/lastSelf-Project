@@ -31,6 +31,7 @@ export const Home = () => {
         `https://6509820cf6553137159b94c2.mockapi.io/items?page=${countPage}&limit=4&${category}&sortBy=${sortBy}&order=${sortOrder}&${search}`
       );
       setItems(res.data);
+      setStatus(null);
       dispatch(setIsLoading(false));
     } catch (error) {
       console.log("error", error);
@@ -53,10 +54,9 @@ export const Home = () => {
           <Sort />
         </div>
         <h2 className="content__title">Все пиццы</h2>
-        {status && status.response && status.response.status === 404 && (
+        {status && status.response && status.response.status === 404 ? (
           <NotFound />
-        )}
-        {(!status || !status.response || status.response.status !== 404) && (
+        ) : (
           <div className="content__items">
             {loading
               ? [...new Array(10)].map((_, i) => {

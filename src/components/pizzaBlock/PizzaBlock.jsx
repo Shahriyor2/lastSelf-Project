@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 
 export const PizzaBlock = ({ id, title, sizes, types, price, images }) => {
   const [sizeIndex, setSizeIndex] = useState(0);
-  const [typesIndex, setTypesIndex] = useState(0);
+  const [typesIndex, setTypesIndex] = useState(types[0]);
   const [sizeImage, setSizeImage] = useState(26);
   const type = ["тонкое", "традиционное"];
   const dispatch = useDispatch();
