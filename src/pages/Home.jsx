@@ -7,9 +7,11 @@ import { PizzaBlock } from "../components/pizzaBlock/PizzaBlock";
 import { Pagination } from "../components/pagination";
 import { setIsLoading } from "../redux/reducers/filterSlice";
 import { Sort } from "../components/Sort";
+import { NotFound } from "./NotFound";
 
 export const Home = () => {
   const [items, setItems] = useState([]);
+  const [status, setStatus] = useState(null);
 
   const { categoryId, sort, loading, countPage, searchValue } = useSelector(
     (state) => state.filterSlice
@@ -32,7 +34,10 @@ export const Home = () => {
       dispatch(setIsLoading(false));
     } catch (error) {
       console.log("error", error);
-      dispatch(setIsLoading(false)); 
+      setStatus(() => error);
+      console.log("status", status);
+      dispatch(setIsLoading(false));
+      console.log("error.responce", error.response);
     }
   };
 
@@ -48,19 +53,26 @@ export const Home = () => {
           <Sort />
         </div>
         <h2 className="content__title">Все пиццы</h2>
-        <div className="content__items">
-          {loading
-            ? [...new Array(10)].map((_, i) => {
-                return <Skeleton key={i} />;
-              })
-            : items
-                .filter((object) =>
-                  object.title.toLowerCase().includes(searchValue.toLowerCase())
-                )
-                .map((object, i) => {
-                  return <PizzaBlock key={i} {...object} />;
-                })}
-        </div>
+        {status && status.response && status.response.status === 404 && (
+          <NotFound />
+        )}
+        {(!status || !status.response || status.response.status !== 404) && (
+          <div className="content__items">
+            {loading
+              ? [...new Array(10)].map((_, i) => {
+                  return <Skeleton key={i} />;
+                })
+              : items
+                  .filter((object) =>
+                    object.title
+                      .toLowerCase()
+                      .includes(searchValue.toLowerCase())
+                  )
+                  .map((object, i) => {
+                    return <PizzaBlock key={i} {...object} />;
+                  })}
+          </div>
+        )}
         <Pagination />
       </div>
     </div>
